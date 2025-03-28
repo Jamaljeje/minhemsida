@@ -1,97 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Jeje Styles</title>
+    <meta charset="UTF-8">
+    <title>Choose Your Style</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
-            margin: 0;
+            background-color: #ffeeee;
             font-family: 'Segoe UI', sans-serif;
-            background-color: #fdf1f4;
             text-align: center;
-            padding: 40px;
+            margin: 0;
+            padding: 20px;
         }
-
         h1 {
-            color: #c7923e;
+            color: #b87a00;
+            margin-bottom: 40px;
         }
-
-        .gallery {
+        .styles-container {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 30px;
-            margin-top: 30px;
         }
-
-        .style-card {
-            background-color: white;
-            padding: 15px;
+        .card {
+            background: white;
             border-radius: 10px;
-            width: 250px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s forwards;
+            padding: 20px;
+            width: 220px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-
-        .style-card img {
+        .card img {
             width: 100%;
-            height: 300px;
-            object-fit: cover;
+            height: auto;
             border-radius: 8px;
         }
-
-        .style-card h3 {
-            margin: 10px 0 5px;
-            font-size: 18px;
-            color: #333;
+        .card h3 {
+            margin: 15px 0 5px;
         }
-
-        .style-card p {
-            margin: 0 0 10px;
-            color: #777;
+        .card p {
+            margin: 0 0 15px;
+            color: #444;
         }
-
-        .book-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #e91e63;
+        .btn {
+            background: #f2266e;
             color: white;
             text-decoration: none;
+            padding: 10px 20px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            display: inline-block;
         }
-
-        .book-btn:hover {
-            background-color: #d81b60;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .btn:hover {
+            background: #d21e5f;
         }
     </style>
 </head>
 <body>
+
     <h1>Choose Your Style</h1>
 
-    {% if styles %}
-    <div class="gallery">
+    <div class="styles-container">
         {% for style in styles %}
-        <div class="style-card">
+        <div class="card">
             <img src="{{ url_for('static', filename=style.image) }}" alt="{{ style.name }}">
             <h3>{{ style.name }}</h3>
             <p>{{ style.price }} kr</p>
-            <a href="{{ url_for('booking') }}?style={{ style.name }}&gender={{ gender }}" class="book-btn">Book Now</a>
+            <a href="/book?style_id={{ style.id }}" class="btn">Book Now</a>
         </div>
         {% endfor %}
     </div>
-    {% else %}
-    <p>No styles to display. Please go back and choose a gender.</p>
-    {% endif %}
+
 </body>
 </html>
