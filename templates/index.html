@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Welcome to Jeje's Site</title>
+    <meta charset="UTF-8">
+    <title>Jeje Salon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-    <h1>Hello from Flask on Render! 🎉</h1>
-    <p>This is your live website at last!</p>
+<body style="text-align: center; font-family: sans-serif; padding: 50px;">
+    <h1>Welcome to Jeje's Salon</h1>
+    <p>Choose your style, get fresh ✂️</p>
+    <a href="/styles?gender=men" style="margin: 20px; display: inline-block; background: #f05; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Men Styles</a>
+    <a href="/styles?gender=women" style="margin: 20px; display: inline-block; background: #f05; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Women Styles</a>
 </body>
 </html>
