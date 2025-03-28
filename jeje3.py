@@ -1,73 +1,41 @@
 from flask import Flask, render_template, request
-from datetime import datetime, timedelta
+import os
 
 app = Flask(__name__)
 
-# Styles and Prices
-styles = {
-    'men': [
-        {'name': 'Classic Fade', 'price': 200},
-        {'name': 'Beard Trim', 'price': 250},
-        {'name': 'Oil & Color', 'price': 300},
-    ],
-    'women': [
-        {'name': 'Elegant Braids', 'price': 500},
-        {'name': 'Twist Styles', 'price': 400},
-        {'name': 'Classic Cornrows', 'price': 350},
-    ]
-}
+# Updated styles with correct image filenames from static/
+styles = [
+    # Men styles
+    {"id": 1, "name": "Classic Fade", "price": 200, "image": "style1.jpg", "gender": "men"},
+    {"id": 2, "name": "Beard Trim", "price": 250, "image": "style2.jpg", "gender": "men"},
+    {"id": 3, "name": "Oil & Color", "price": 300, "image": "style3.jpg", "gender": "men"},
+
+    # Women styles
+    {"id": 4, "name": "Elegant Braids", "price": 500, "image": "style4.jpg", "gender": "women"},
+    {"id": 5, "name": "Twist Styles", "price": 400, "image": "style5.jpg", "gender": "women"},
+    {"id": 6, "name": "Classic Cornrows", "price": 350, "image": "style6.jpg", "gender": "women"},
+
+    # Extra styles
+    {"id": 7, "name": "Side Shave", "price": 280, "image": "style7.jpg", "gender": "men"},
+    {"id": 8, "name": "Bold Afro", "price": 450, "image": "style8.jpg", "gender": "women"},
+    {"id": 9, "name": "Taper Fade", "price": 220, "image": "style9.jpg", "gender": "men"},
+]
 
 @app.route('/')
-def home():
-    return render_template('home.html')
+def index():
+    return render_template("index.html")
 
 @app.route('/styles')
-def styles_page():
+def show_styles():
     gender = request.args.get('gender')
-    selected_styles = styles.get(gender, [])
-    return render_template('style.html', styles=selected_styles, gender=gender)
+    filtered_styles = [style for style in styles if style["gender"] == gender] if gender else styles
+    return render_template("style.html", styles=filtered_styles)
 
-@app.route('/booking', methods=['GET', 'POST'])
-def booking():
-    style_name = request.args.get('style')
-    gender = request.args.get('gender')
-
-    # Find the selected style's price
-    selected_style = None
-    for style in styles.get(gender, []):
-        if style['name'] == style_name:
-            selected_style = style
-            break
-
-    if not selected_style:
-        return "Style not found", 404
-
-    final_price = selected_style['price']
-    adjustment_note = ""
-
-    if request.method == 'POST':
-        selected_datetime = request.form.get('datetime')
-        if selected_datetime:
-            booking_time = datetime.fromisoformat(selected_datetime)
-            now = datetime.now()
-            delta = booking_time - now
-
-            if delta < timedelta(minutes=30):
-                final_price += 30
-                adjustment_note = "⚠️ +30 kr for short notice booking (less than 30 mins)"
-            elif delta >= timedelta(days=2):
-                final_price -= 20
-                adjustment_note = "🎉 -20 kr discount for booking 2 days ahead!"
-
-    return render_template(
-        'booking.html',
-        style=style_name,
-        price=selected_style['price'],
-        final_price=final_price,
-        adjustment_note=adjustment_note,
-        gender=gender
-    )
+@app.route('/book/<int:style_id>')
+def book(style_id):
+    selected_style = next((style for style in styles if style["id"] == style_id), None)
+    return render_template("booking.html", style=selected_style)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
-
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
