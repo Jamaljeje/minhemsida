@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Appointment - Jeje Salon</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: url("{{ url_for('static', filename='background_men.jpg' if gender == 'men' else 'background.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .booking-box {
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #ffc107;
+        }
+
+        label, p {
+            font-size: 18px;
+            margin: 15px 0 5px;
+        }
+
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .confirm-btn {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .confirm-btn:hover {
+            background-color: #d81b60;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Your Appointment</h1>
+
+    <div class="booking-box">
+        <h2>{{ style.name }}</h2>
+        <p>Base Price: {{ style.price }} kr</p>
+
+        <form method="POST">
+            <label for="booking_time">Select Date & Time:</label>
+            <input type="datetime-local" id="booking_time" name="booking_time" required>
+
+            <br>
+            <button class="confirm-btn" type="submit">Confirm Booking</button>
+        </form>
+
+        {% if total_price is not none %}
+            <p><strong>Total Price:</strong> {{ total_price }} kr</p>
+        {% endif %}
+    </div>
+</body>
+</html>
