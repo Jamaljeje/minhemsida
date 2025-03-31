@@ -20,9 +20,7 @@ styles = [
 
 @app.route('/')
 def index():
-@app.route('/')
-def index():
-    return render_template("home.html")
+    return render_template("home.html")  # ✅ This is your real homepage
 
 @app.route('/styles')
 def show_styles():
