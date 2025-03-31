@@ -13,7 +13,7 @@ styles = [
     {"id": 4, "name": "Classic Fade", "price": 200, "image": "style4.jpg", "gender": "men"},
     {"id": 5, "name": "Taper Fade", "price": 250, "image": "style5.jpg", "gender": "men"},
     {"id": 6, "name": "Bold Afro", "price": 300, "image": "style6.jpg", "gender": "men"},
-    {"id": 7, "name": "Undercut lång hair", "price": 400, "image": "style7.jpg", "gender": "men"},
+    {"id": 7, "name": "Undercut lång hair", "price": 400, "image": "undercut_long.jpg", "gender": "men"},
     {"id": 8, "name": "Beard Trim", "price": 350, "image": "style8.jpg", "gender": "men"},
     {"id": 9, "name": "Taper Fade", "price": 220, "image": "style9.jpg", "gender": "men"}
 ]
