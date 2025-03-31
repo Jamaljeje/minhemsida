@@ -4,17 +4,18 @@ import os
 app = Flask(__name__)
 
 styles = [
+    # Men styles
     {"id": 1, "name": "Classic Fade", "price": 200, "image": "style1.jpg", "gender": "men"},
     {"id": 2, "name": "Beard Trim", "price": 250, "image": "style2.jpg", "gender": "men"},
     {"id": 3, "name": "Oil & Color", "price": 300, "image": "style3.jpg", "gender": "men"},
-
-    {"id": 4, "name": "Elegant Braids", "price": 500, "image": "style4.jpg", "gender": "women"},
-    {"id": 5, "name": "Twist Styles", "price": 400, "image": "style5.jpg", "gender": "women"},
-    {"id": 6, "name": "Classic Cornrows", "price": 350, "image": "style6.jpg", "gender": "women"},
-
     {"id": 7, "name": "Side Shave", "price": 280, "image": "style7.jpg", "gender": "men"},
     {"id": 8, "name": "Bold Afro", "price": 450, "image": "style8.jpg", "gender": "men"},
-    {"id": 9, "name": "Taper Fade", "price": 220, "image": "style9.jpg", "gender": "men"}
+    {"id": 9, "name": "Taper Fade", "price": 220, "image": "style9.jpg", "gender": "men"},
+
+    # Women styles
+    {"id": 4, "name": "Elegant Braids", "price": 500, "image": "style4.jpg", "gender": "women"},
+    {"id": 5, "name": "Twist Styles", "price": 400, "image": "style5.jpg", "gender": "women"},
+    {"id": 6, "name": "Classic Cornrows", "price": 350, "image": "style6.jpg", "gender": "women"}
 ]
 
 @app.route('/')
