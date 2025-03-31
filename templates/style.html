@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +25,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             margin: 15px;
-            width: 250px;
+            width: 260px;
             overflow: hidden;
             transition: transform 0.2s;
         }
@@ -36,12 +37,8 @@
             height: 200px;
             object-fit: cover;
         }
-        .style-card h3 {
-            margin: 10px 0 5px 0;
-        }
-        .style-card p {
-            margin: 0 0 10px 0;
-            color: #777;
+        .style-card h3, .style-card p {
+            margin: 10px;
         }
         .style-card a {
             display: inline-block;
@@ -62,7 +59,7 @@
         <div class="style-card">
             <img src="{{ url_for('static', filename=style['image']) }}" alt="{{ style['name'] }}">
             <h3>{{ style['name'] }}</h3>
-            <p>Price: {{ style['price'] }} kr</p>
+            <p>{{ style['price'] }} kr</p>
             <a href="/book/{{ style['id'] }}">Book</a>
         </div>
         {% endfor %}
