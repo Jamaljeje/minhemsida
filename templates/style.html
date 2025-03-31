@@ -2,72 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choose Your Style</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
-            background-color: #ffeeee;
-            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
-            padding: 20px;
+            padding: 50px 0;
         }
-        h1 {
-            color: #b87a00;
-            margin-bottom: 40px;
-        }
-        .styles-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-        .card {
-            background: white;
+        .style-card {
+            display: inline-block;
+            width: 250px;
+            height: 350px;
+            margin: 20px;
+            background-color: white;
             border-radius: 10px;
-            padding: 20px;
-            width: 220px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: pointer;
         }
-        .card img {
+        .style-card img {
             width: 100%;
-            height: auto;
-            border-radius: 8px;
+            height: 70%;
+            object-fit: cover;
         }
-        .card h3 {
-            margin: 15px 0 5px;
+        .style-card .details {
+            padding: 15px;
         }
-        .card p {
-            margin: 0 0 15px;
-            color: #444;
+        .style-card .details h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
         }
-        .btn {
-            background: #f2266e;
+        .style-card .details p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .style-card .details .btn {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #F0496B;
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
             border-radius: 5px;
-            display: inline-block;
-        }
-        .btn:hover {
-            background: #d21e5f;
         }
     </style>
 </head>
 <body>
-
     <h1>Choose Your Style</h1>
-
     <div class="styles-container">
         {% for style in styles %}
-        <div class="card">
-            <img src="{{ url_for('static', filename=style.image) }}" alt="{{ style.name }}">
-            <h3>{{ style.name }}</h3>
-            <p>{{ style.price }} kr</p>
-            <a href="/book?style_id={{ style.id }}" class="btn">Book Now</a>
+        <div class="style-card">
+            <img src="{{ url_for('static', filename=style['image']) }}" alt="{{ style['name'] }}">
+            <div class="details">
+                <h3>{{ style['name'] }}</h3>
+                <p>Price: {{ style['price'] }} kr</p>
+                <a href="/book/{{ style['id'] }}" class="btn">Book Now</a>
+            </div>
         </div>
         {% endfor %}
     </div>
-
 </body>
 </html>
