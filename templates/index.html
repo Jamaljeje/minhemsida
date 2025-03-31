@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Jeje Salon</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #fdeef4;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #c97c10;
+        }
+        a {
+            display: inline-block;
+            margin: 15px;
+            padding: 12px 25px;
+            background-color: #ff3366;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        a:hover {
+            background-color: #e6005c;
+        }
+    </style>
 </head>
-<body style="text-align: center; font-family: sans-serif; padding: 50px;">
-    <h1>Welcome to Jeje's Salon</h1>
-    <p>Choose your style, get fresh ✂️</p>
-    <a href="/styles?gender=men" style="margin: 20px; display: inline-block; background: #f05; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Men Styles</a>
-    <a href="/styles?gender=women" style="margin: 20px; display: inline-block; background: #f05; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Women Styles</a>
+<body>
+    <h1>Welcome to Jeje Salon</h1>
+    <p>Pick your style category:</p>
+    <a href="/styles?gender=men">Men Styles</a>
+    <a href="/styles?gender=women">Women Styles</a>
 </body>
 </html>

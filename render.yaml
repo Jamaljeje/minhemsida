@@ -1,6 +1,6 @@
-services: 
-  - type: web 
-    name: flask-webbsite 
-    env: python 
-    buildCommand: "" 
-    startCommand: "python jeje3.py" 
+services:
+  - type: web
+    name: minhemsida
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn jeje3:app"
