@@ -5,7 +5,7 @@
   <title>Welcome to JejeKutz</title>
   <style>
     body {
-      background-image: url("{{ url_for('static', filename='Home_background.jpg') }}");
+      background-image: url("{{ url_for('static', filename='background_men.jpg') }}");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -15,18 +15,41 @@
       margin: 0;
       padding: 0;
     }
+
     .container {
       padding-top: 100px;
     }
+
     h1 {
       font-size: 50px;
       margin-bottom: 10px;
     }
+
     p {
       font-size: 24px;
       margin-bottom: 40px;
     }
+
+    .tab-btn {
+      font-size: 20px;
+      padding: 12px 24px;
+      margin: 10px;
+      background-color: #FFD700;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .tab-btn:hover {
+      background-color: #e6c200;
+    }
+
     .book-btn {
+      display: inline-block;
+      margin-top: 30px;
       font-size: 22px;
       padding: 15px 30px;
       background-color: #F04D6B;
@@ -37,6 +60,7 @@
       font-weight: bold;
       transition: background-color 0.3s;
     }
+
     .book-btn:hover {
       background-color: #c0395e;
     }
@@ -46,6 +70,11 @@
   <div class="container">
     <h1>Welcome to JejeKutz</h1>
     <p>Fresh Styles. Clean Cuts. Book Today.</p>
+
+    <a href="/styles?gender=men" class="tab-btn">Men</a>
+    <a href="/styles?gender=women" class="tab-btn">Women</a>
+
+    <br>
     <a href="/book" class="book-btn">Book Appointment</a>
   </div>
 </body>
