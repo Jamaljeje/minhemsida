@@ -57,15 +57,30 @@ def book():
     return render_template("booking.html", styles=styles, selected=selected)
 
 def send_email(name, client_email, style_name, time, price):
-    sender = "your_gmail@gmail.com"          # replace with your Gmail
-    password = "your_app_password"           # use Gmail App Password
-    receiver = "jamaljeje22@gmail.com"       # your email
+    sender = "your_gmail@gmail.com"          # Replace with your Gmail
+    password = "your_app_password"           # Use Gmail App Password
+    receiver = "jamaljeje22@gmail.com"       # Your own email
 
     subject = "New Booking from JejeKutz"
-    body = f"""
-    New booking received:
+    body = (
+        f"New booking received:\n\n"
+        f"Name: {name}\n"
+        f"Client Email: {client_email}\n"
+        f"Style: {style_name}\n"
+        f"Time: {time}\n"
+        f"Total Price: {price} kr\n"
+    )
 
-    Name: {name}
-    Client Email: {client_email}
-    Style: {style_name}
-    Time: {time
+    email_text = f"Subject: {subject}\n\n{body}"
+
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+            smtp.login(sender, password)
+            smtp.sendmail(sender, receiver, email_text)
+        print("Booking email sent ✅")
+    except Exception as e:
+        print("Error sending email:", e)
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
