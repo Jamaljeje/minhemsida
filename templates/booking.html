@@ -19,29 +19,23 @@
     }
 
     .booking-container {
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.8);
       color: #fff;
-      max-width: 450px;
+      max-width: 500px;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
     }
 
     h1 {
       font-size: 28px;
-      margin-bottom: 10px;
       color: #FFD700;
       text-align: center;
     }
 
-    h2 {
-      font-size: 22px;
-      margin: 10px 0;
+    h2, p {
       text-align: center;
-    }
-
-    p {
-      text-align: center;
+      margin-bottom: 10px;
     }
 
     label {
@@ -49,39 +43,67 @@
       margin: 15px 0 5px;
     }
 
-    input[type="datetime-local"] {
-      padding: 10px;
+    input, button {
       width: 100%;
-      margin-bottom: 20px;
+      padding: 12px;
       border-radius: 6px;
       border: none;
+      margin-bottom: 15px;
+      font-size: 16px;
     }
 
     button {
       background-color: #F04D6B;
       color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
       cursor: pointer;
-      font-size: 16px;
-      width: 100%;
+    }
+
+    .contact-info {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .flash {
+      background-color: #1e8f60;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      color: #fff;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <div class="booking-container">
     <h1>Book Your Appointment</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
     <h2>{{ style.name }}</h2>
     <p><strong>Base Price:</strong> {{ style.price }} kr</p>
 
     <form method="post">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required>
+
       <label for="datetime">Select Date & Time:</label>
-      <input type="datetime-local" id="datetime" name="datetime">
+      <input type="datetime-local" id="datetime" name="datetime" required>
+
       <button type="submit">Confirm Booking</button>
     </form>
 
-    <p><strong>Total Price:</strong> kr</p>
+    <div class="contact-info">
+      Questions? Call <strong>0727291243</strong> or email <strong>jamaljeje22@gmail.com</strong>
+    </div>
   </div>
 </body>
 </html>
