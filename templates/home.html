@@ -1,72 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome to Jeje Kutz</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <meta charset="UTF-8">
+  <title>Welcome to JejeKutz</title>
   <style>
     body {
-      background-image: url('/static/Home_background.jpg');
+      background-image: url("{{ url_for('static', filename='Home_background.jpg') }}");
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
       font-family: Arial, sans-serif;
+      text-align: center;
+      color: white;
       margin: 0;
       padding: 0;
-      color: white;
     }
-    .overlay {
-      background: rgba(0, 0, 0, 0.6);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      text-align: center;
+    .container {
+      padding-top: 100px;
     }
     h1 {
-      font-size: 60px;
+      font-size: 50px;
       margin-bottom: 10px;
-      color: #ffffff;
-      text-shadow: 2px 2px #000;
     }
-    p.intro {
+    p {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+    .book-btn {
       font-size: 22px;
-      max-width: 700px;
-      margin: 0 auto 25px;
-      color: #e0e0e0;
-    }
-    .btn {
       padding: 15px 30px;
-      background-color: #F0496B;
+      background-color: #F04D6B;
       color: white;
+      border: none;
+      border-radius: 8px;
       text-decoration: none;
-      font-size: 18px;
-      border-radius: 5px;
-      margin: 10px;
-      display: inline-block;
+      font-weight: bold;
+      transition: background-color 0.3s;
     }
-    .about {
-      font-size: 18px;
-      max-width: 600px;
-      margin-top: 30px;
-      color: #f8f8f8;
+    .book-btn:hover {
+      background-color: #c0395e;
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <h1>Welcome to Jeje Kutz</h1>
-    <p class="intro">Step into Jeje Kutz — where your style gets the royal treatment 💈✨</p>
-    <a href="/styles?gender=men" class="btn">Men Styles</a>
-    <a href="/styles?gender=women" class="btn">Women Styles</a>
-    <a href="/book/1" class="btn">Book Appointment</a>
-
-    <div class="about">
-      <p>✂️ Now booking Spring 2025 styles — secure your slot today!</p>
-      <p>At Jeje Kutz, we believe in precision, passion, and personality. From fades to braids, our goal is to have you stepping out with confidence and style.</p>
-    </div>
+  <div class="container">
+    <h1>Welcome to JejeKutz</h1>
+    <p>Fresh Styles. Clean Cuts. Book Today.</p>
+    <a href="/book" class="book-btn">Book Appointment</a>
   </div>
 </body>
 </html>

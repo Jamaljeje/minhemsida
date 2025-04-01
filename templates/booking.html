@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Book Appointment - Jeje Salon</title>
+  <title>Book Appointment - JejeKutz</title>
   <style>
     body {
       background-image: url('{{ url_for('static', filename='Home_background.jpg') }}');
@@ -53,13 +53,6 @@
       cursor: pointer;
     }
 
-    .contact-info {
-      margin-top: 15px;
-      text-align: center;
-      font-size: 14px;
-      color: #ccc;
-    }
-
     .flash {
       background-color: #1e8f60;
       padding: 10px;
@@ -79,6 +72,13 @@
       padding: 10px 15px;
       border-radius: 5px;
       margin-top: 10px;
+    }
+
+    .contact-info {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      color: #ccc;
     }
   </style>
 </head>
@@ -108,6 +108,7 @@
     {% if selected %}
       <form method="post">
         <input type="hidden" name="style_id" value="{{ selected.id }}">
+
         <p><strong>Selected Style:</strong> {{ selected.name }}</p>
         <p><strong>Base Price:</strong> {{ selected.price }} kr</p>
 
@@ -125,7 +126,7 @@
     {% endif %}
 
     <div class="contact-info">
-      Call <strong>0727291243</strong> or email <strong>jamaljeje22@gmail.com</strong>
+      Need help? Call <strong>0727291243</strong> or email <strong>jamaljeje22@gmail.com</strong>
     </div>
   </div>
 </body>

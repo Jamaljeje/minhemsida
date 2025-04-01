@@ -7,11 +7,11 @@ app = Flask(__name__)
 app.secret_key = 'jejesecret123'
 
 styles = [
-    {"id": 1, "name": "Classic Fade", "price": 200, "image": "Classic_fade.jpg", "gender": "men"},
+    {"id": 1, "name": "Classic Fade", "price": 200, "image": "Classic_fade.jpg", "gender": "men", "recommended": True},
     {"id": 2, "name": "Beard Trim", "price": 250, "image": "Beard_trim.jpg", "gender": "men"},
     {"id": 3, "name": "Oil & Color", "price": 300, "image": "Collor_Oil.jpg", "gender": "men"},
     {"id": 4, "name": "Taper Fade", "price": 250, "image": "Taper_fade.jpg", "gender": "men"},
-    {"id": 5, "name": "Undercut Long Hair", "price": 400, "image": "Undercut_long_Hair.jpg", "gender": "men"},
+    {"id": 5, "name": "Undercut Long Hair", "price": 400, "image": "Undercut_long_Hair.jpg", "gender": "men", "recommended": True},
     {"id": 6, "name": "Beard Trim", "price": 350, "image": "Beard_trim.jpg", "gender": "men"},
     {"id": 7, "name": "Low Fade", "price": 220, "image": "Low_fade.jpg", "gender": "men"},
     {"id": 8, "name": "Bold Afro", "price": 300, "image": "Bold_Afro.jpg", "gender": "men"},
@@ -57,9 +57,9 @@ def book():
     return render_template("booking.html", styles=styles, selected=selected)
 
 def send_email(name, client_email, style_name, time, price):
-    sender = "your_gmail@gmail.com"          # Replace with your Gmail
-    password = "your_app_password"           # Use Gmail App Password
-    receiver = "jamaljeje22@gmail.com"       # Your own email
+    sender = "your_gmail@gmail.com"
+    password = "your_app_password"
+    receiver = "jamaljeje22@gmail.com"
 
     subject = "New Booking from JejeKutz"
     body = (

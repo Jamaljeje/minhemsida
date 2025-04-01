@@ -26,6 +26,7 @@
             margin: 30px;
         }
         .style-card {
+            position: relative;
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -69,6 +70,16 @@
             cursor: pointer;
             border: none;
         }
+        .recommended-badge {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: #FFD700;
+            color: #000;
+            padding: 4px 8px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +87,9 @@
     <div class="styles-container">
         {% for style in styles %}
         <div class="style-card">
+            {% if style.recommended %}
+            <div class="recommended-badge">⭐ Recommended</div>
+            {% endif %}
             <div class="price">{{ style['price'] }} kr</div>
             <div class="style-name">{{ style['name'] }}</div>
             <img src="{{ url_for('static', filename=style['image']) }}" alt="{{ style['name'] }}">
