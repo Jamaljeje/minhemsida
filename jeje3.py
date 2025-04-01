@@ -31,35 +31,35 @@ def show_styles():
     sorted_styles = sorted(filtered_styles, key=lambda s: s["price"])
     return render_template("style.html", styles=sorted_styles)
 
-@app.route('/book/<int:style_id>', methods=['GET', 'POST'])
-def book(style_id):
-    selected_style = next((style for style in styles if style["id"] == style_id), None)
+@app.route('/book', methods=['GET', 'POST'])
+def book():
+    selected = None
+    style_id = request.form.get('style_id')
 
-    if request.method == 'POST':
+    if style_id:
+        selected = next((style for style in styles if str(style["id"]) == style_id), None)
+
+    if request.method == 'POST' and 'name' in request.form:
         name = request.form['name']
         email = request.form['email']
         datetime_str = request.form['datetime']
         selected_time = datetime.fromisoformat(datetime_str)
 
-        # Calculate surcharge if booking time is < 30 mins away
-        now = datetime.now()
-        extra_charge = 30 if (selected_time - now).total_seconds() < 1800 else 0
-        total_price = selected_style['price'] + extra_charge
+        extra_charge = 30 if (selected_time - datetime.now()).total_seconds() < 1800 else 0
+        total_price = selected['price'] + extra_charge
 
-        # Send booking email to you
-        send_email(name, email, selected_style['name'], datetime_str, total_price)
+        send_email(name, email, selected['name'], datetime_str, total_price)
 
-        # Flash confirmation
-        flash(f"Thanks {name}, your booking for {selected_style['name']} at {datetime_str} is confirmed! Total: {total_price} kr. We'll see you soon 💈")
+        flash(f"Thanks {name}, your booking for {selected['name']} at {datetime_str} is confirmed! Total: {total_price} kr.")
 
-        return redirect(url_for('book', style_id=style_id))
+        return redirect(url_for('book'))
 
-    return render_template("booking.html", style=selected_style)
+    return render_template("booking.html", styles=styles, selected=selected)
 
 def send_email(name, client_email, style_name, time, price):
     sender = "your_gmail@gmail.com"          # replace with your Gmail
-    password = "your_app_password"           # use Gmail App Password!
-    receiver = "jamaljeje22@gmail.com"       # your actual email
+    password = "your_app_password"           # use Gmail App Password
+    receiver = "jamaljeje22@gmail.com"       # your email
 
     subject = "New Booking from JejeKutz"
     body = f"""
@@ -68,20 +68,4 @@ def send_email(name, client_email, style_name, time, price):
     Name: {name}
     Client Email: {client_email}
     Style: {style_name}
-    Time: {time}
-    Total Price: {price} kr
-    """
-
-    email_text = f"Subject: {subject}\n\n{body}"
-
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-            smtp.login(sender, password)
-            smtp.sendmail(sender, receiver, email_text)
-        print("Booking email sent ✅")
-    except Exception as e:
-        print("Error sending email:", e)
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host='0.0.0.0', port=port)
+    Time: {time

@@ -33,17 +33,12 @@
       text-align: center;
     }
 
-    h2, p {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
     label {
       display: block;
       margin: 15px 0 5px;
     }
 
-    input, button {
+    input, select, button {
       width: 100%;
       padding: 12px;
       border-radius: 6px;
@@ -89,7 +84,7 @@
 </head>
 <body>
   <div class="booking-container">
-    <h1>Book Your Appointment</h1>
+    <h1>Book Appointment</h1>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -98,24 +93,39 @@
       {% endif %}
     {% endwith %}
 
-    <h2>{{ style.name }}</h2>
-    <p><strong>Base Price:</strong> {{ style.price }} kr</p>
-
     <form method="post">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="datetime">Select Date & Time:</label>
-      <input type="datetime-local" id="datetime" name="datetime" required>
-
-      <button type="submit">Confirm Booking</button>
+      <label for="style">Choose Style</label>
+      <select name="style_id" id="style" required onchange="this.form.submit()">
+        <option disabled selected value>-- Select a Style --</option>
+        {% for style in styles %}
+          <option value="{{ style.id }}" {% if selected and style.id == selected.id %}selected{% endif %}>
+            {{ style.name }}
+          </option>
+        {% endfor %}
+      </select>
     </form>
 
+    {% if selected %}
+      <form method="post">
+        <input type="hidden" name="style_id" value="{{ selected.id }}">
+        <p><strong>Selected Style:</strong> {{ selected.name }}</p>
+        <p><strong>Base Price:</strong> {{ selected.price }} kr</p>
+
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="datetime">Select Date & Time</label>
+        <input type="datetime-local" id="datetime" name="datetime" required>
+
+        <button type="submit">Confirm Booking</button>
+      </form>
+    {% endif %}
+
     <div class="contact-info">
-      Questions? Call <strong>0727291243</strong> or email <strong>jamaljeje22@gmail.com</strong>
+      Call <strong>0727291243</strong> or email <strong>jamaljeje22@gmail.com</strong>
     </div>
   </div>
 </body>
