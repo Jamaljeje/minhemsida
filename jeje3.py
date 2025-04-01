@@ -4,20 +4,17 @@ import os
 app = Flask(__name__)
 
 styles = [
-    # Men styles
-    {"id": 1, "name": "Classic Fade", "price": 200, "image": "Classic_fade.jpg", "gender": "men"},
-    {"id": 2, "name": "Beard Trim", "price": 250, "image": "Beard_trim.jpg", "gender": "men"},
+    {"id": 1, "name": "Classic Fade", "price": 200, "image": "Classic_Fade.jpg", "gender": "men"},
+    {"id": 2, "name": "Beard Trim", "price": 250, "image": "Beard_Trim.jpg", "gender": "men"},
     {"id": 3, "name": "Oil & Color", "price": 300, "image": "Collor_Oil.jpg", "gender": "men"},
-    {"id": 4, "name": "Taper Fade", "price": 250, "image": "Taper_fade.jpg", "gender": "men"},
+    {"id": 4, "name": "Taper Fade", "price": 250, "image": "Taper_Fade.jpg", "gender": "men"},
     {"id": 5, "name": "Bold Afro", "price": 300, "image": "Bold_Afro.jpg", "gender": "men"},
-    {"id": 6, "name": "Beard Trim", "price": 350, "image": "Beard_trim.jpg", "gender": "men"},
-    {"id": 7, "name": "Undercut Long Hair", "price": 400, "image": "Undercut_long_hair.jpg", "gender": "men"},
-    {"id": 8, "name": "Low Fade", "price": 220, "image": "Low_fade.jpg", "gender": "men"},
-
-    # Women styles
-    {"id": 9, "name": "Elegant Braids", "price": 500, "image": "Elegent_Braids.jpg", "gender": "women"},
-    {"id": 10, "name": "Twist Styles", "price": 400, "image": "twist_Styles.jpg", "gender": "women"},
-    {"id": 11, "name": "Classic Cornrows", "price": 350, "image": "Classic_Cornrows.jpg", "gender": "women"}
+    {"id": 6, "name": "Beard Trim", "price": 350, "image": "Beard_Trim2.jpg", "gender": "men"},
+    {"id": 7, "name": "Low Fade", "price": 220, "image": "Low_Fade.jpg", "gender": "men"},
+    {"id": 8, "name": "Undercut Long Hair", "price": 400, "image": "Undercut_Long_Hair.jpg", "gender": "men"},
+    {"id": 9, "name": "Twist Styles", "price": 400, "image": "Twist_Styles.jpg", "gender": "women"},
+    {"id": 10, "name": "Classic Cornrows", "price": 350, "image": "Classic_Cornrows.jpg", "gender": "women"},
+    {"id": 11, "name": "Elegant Braids", "price": 500, "image": "Elegant_Braids.jpg", "gender": "women"}
 ]
 
 @app.route('/')
