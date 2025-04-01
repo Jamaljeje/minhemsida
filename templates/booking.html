@@ -73,6 +73,18 @@
       color: #fff;
       text-align: center;
     }
+
+    .home-btn {
+      display: block;
+      background-color: #FFD700;
+      color: #000;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -82,6 +94,7 @@
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <div class="flash">{{ messages[0] }}</div>
+        <a href="/" class="home-btn">← Back to Homepage</a>
       {% endif %}
     {% endwith %}
 
