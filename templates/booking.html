@@ -1,119 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Book Appointment - Jeje Salon</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+  <meta charset="UTF-8">
+  <title>Book Appointment - Jeje Salon</title>
+  <style>
+    body {
+      background-image: url('{{ url_for('static', filename='Home_background.jpg') }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
 
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            min-height: 100vh;
-        }
+    .booking-container {
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      max-width: 450px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
 
-        .style-image {
-            flex: 1 1 50%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            color: #fff;
-        }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #FFD700;
+      text-align: center;
+    }
 
-        .style-image img {
-            max-width: 90%;
-            max-height: 70vh;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
+    h2 {
+      font-size: 22px;
+      margin: 10px 0;
+      text-align: center;
+    }
 
-        .style-description {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ddd;
-            text-align: center;
-        }
+    p {
+      text-align: center;
+    }
 
-        .booking-form {
-            flex: 1 1 50%;
-            background-color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-        }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+    }
 
-        .form-box {
-            width: 100%;
-            max-width: 400px;
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            text-align: center;
-        }
+    input[type="datetime-local"] {
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: none;
+    }
 
-        .form-box h1 {
-            color: #F0496B;
-        }
-
-        label {
-            display: block;
-            margin: 20px 0 5px;
-            font-size: 16px;
-        }
-
-        input[type="datetime-local"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 12px 20px;
-            background-color: #F0496B;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #e03d5c;
-        }
-    </style>
+    button {
+      background-color: #F04D6B;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="style-image">
-            <img src="{{ url_for('static', filename=style.image) }}" alt="{{ style.name }}">
-            <div class="style-description">
-                <p>{{ style.name }} — {{ style.price }} kr</p>
-                <p>Our {{ style.name }} is styled with expert care to bring out your best look. Book now to refresh your vibe!</p>
-            </div>
-        </div>
-        <div class="booking-form">
-            <div class="form-box">
-                <h1>Book Your Appointment</h1>
-                <form method="post">
-                    <label for="datetime">Select Date & Time:</label>
-                    <input type="datetime-local" id="datetime" name="datetime" required>
-                    <button type="submit">Confirm Booking</button>
-                </form>
-            </div>
-        </div>
-    </div>
+  <div class="booking-container">
+    <h1>Book Your Appointment</h1>
+    <h2>{{ style.name }}</h2>
+    <p><strong>Base Price:</strong> {{ style.price }} kr</p>
+
+    <form method="post">
+      <label for="datetime">Select Date & Time:</label>
+      <input type="datetime-local" id="datetime" name="datetime">
+      <button type="submit">Confirm Booking</button>
+    </form>
+
+    <p><strong>Total Price:</strong> kr</p>
+  </div>
 </body>
 </html>
