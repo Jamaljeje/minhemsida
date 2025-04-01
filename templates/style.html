@@ -57,16 +57,17 @@
             margin: 10px 0;
             color: #333;
         }
-        .style-card a {
-            display: inline-block;
-            margin: 10px auto 15px;
+        .style-card form {
+            margin: 0 auto 15px;
+        }
+        .style-card button {
             background-color: #333;
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
-            text-decoration: none;
             font-weight: bold;
-            width: fit-content;
+            cursor: pointer;
+            border: none;
         }
     </style>
 </head>
@@ -78,7 +79,10 @@
             <div class="price">{{ style['price'] }} kr</div>
             <div class="style-name">{{ style['name'] }}</div>
             <img src="{{ url_for('static', filename=style['image']) }}" alt="{{ style['name'] }}">
-            <a href="/book/{{ style['id'] }}">Book</a>
+            <form action="/book" method="post">
+                <input type="hidden" name="style_id" value="{{ style['id'] }}">
+                <button type="submit">Book</button>
+            </form>
         </div>
         {% endfor %}
     </div>
