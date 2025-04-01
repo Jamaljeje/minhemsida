@@ -25,7 +25,9 @@ def index():
 def show_styles():
     gender = request.args.get('gender')
     filtered_styles = [style for style in styles if style["gender"] == gender] if gender else styles
-    return render_template("style.html", styles=filtered_styles)
+    sorted_styles = sorted(filtered_styles, key=lambda s: s["price"])  # Sort by price
+    return render_template("style.html", styles=sorted_styles)
+
 
 @app.route('/book/<int:style_id>')
 def book(style_id):
